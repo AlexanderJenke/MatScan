@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>MatScan</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>API-Redirect for MatScan</h1>
+        <script>
+            var el = document.createElement('div');
+            el.id = "counter";
+            el.innerHTML = '<p>0</p>';
+            document.body.appendChild(el);
+
+            function update(data){
+                var el = document.getElementById('counter');
+                el.innerHTML = '<p>'+data['d']+'</p>';
+            }
+
+            (function poll() {
+                var poll_interval=0;
+
+                $.ajax({
+                        url: "poll",
+                        type: 'GET',
+                        dataType: 'json',
+                        timeout: 31000,
+                        success: function(data) {
+                                if (data['s'] == 'event'){
+                                    update(data);
+                                }
+                                poll_interval=0;
+                        },
+                        error: function () {
+                                poll_interval=1000;
+                        },
+                        complete: function () {
+                                setTimeout(poll, poll_interval);
+                        },
+                });
+            })();
+        </script>
+    </body>
+</html>
