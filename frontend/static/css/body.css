@@ -1,0 +1,28 @@
+body {
+    position: fixed;
+    width: 100%;
+    top: 66px;
+    bottom: 42px;
+}
+
+@media (max-width: 991px) {
+    body {
+        bottom: 74px;
+    }
+}
+
+@media (max-width: 719px) {
+    body {
+        bottom: 106px;
+    }
+}
+
+@media (max-width: 413px) {
+    body {
+        bottom: 130px;
+    }
+}
+
+main {
+    height: 100%;
+}
