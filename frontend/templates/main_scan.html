@@ -60,6 +60,7 @@
                 <td id="{{data['id']}}_date">
                     <button class="btn btn-transparent btn-outline-secondary"
                             onclick="alert('{{data['id']}} change date :O ')"
+                            title="Ablaufdatum ändern"
                             style="width: 88px">
                         {{data['exp']}}
                     </button>
@@ -67,20 +68,24 @@
                 <td class="input-group" style="width: 200px">
                     <button class="btn btn-transparent btn-outline-secondary input-group-prepend"
                             id="{{data['id']}}_dec"
+                            title="Menge verringern"
                             onclick="alert('{{data['id']}} decrease me :O ')">
                         <i class="fas fa-minus"></i>
                     </button>
                     <input type="text" maxlength="5" class="input-group-text bg-transparent border-secondary mx-2"
                            style="width: 5em;" value="{{data['count']}}" id="{{data['id']}}_count"
+                           title="Menge des Materials"
                            onchange="alert('{{data['id']}} change me :O')"/>
                     <button class="btn btn-transparent btn-outline-secondary input-group-append"
                             id="{{data['id']}}_inc"
+                            title="Menge erhöhen"
                             onclick="alert('{{data['id']}} increase me :O ')">
                         <i class="fas fa-plus"></i>
                     </button>
                 </td>
                 <td>
                     <button class="btn btn-transparent btn-outline-danger"
+                            title="Eintrag löschen"
                             onclick="alert('{{data['id']}} delete me :O ')">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -96,14 +101,16 @@
     <hr class="my-0 py-0"/>
     <div class="cart buttons row mx-2 my-2" role="group">
         <button type="button" class="cart btn btn-danger col-3"
-                title="Alles wird Rückgängig gemacht.">
+                title="Vorgang abbrechen
+Alles wird Rückgängig gemacht">
             <i class="fas fa-times d-sm-none d-block"></i>
             <b class="d-none d-sm-block">Abbrechen</b>
         </button>
         <div class="col"></div>
-        <button type="button" class="cart btn btn-success col-3" title="Das aufgelistete Material wird umgelagert.">
+        <button type="button" class="cart btn btn-success col-3" title="Vorgang abschließen
+Das aufgelistete Material wird umgelagert">
             <i class="fas fa-check d-sm-none d-block"></i>
-            <b class="d-none d-sm-block">Buchen</b>
+            <b class="d-none d-sm-block">Fertig</b>
         </button>
     </div>
 </div>
