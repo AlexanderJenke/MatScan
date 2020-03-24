@@ -1,0 +1,93 @@
+{% for row in rows %}
+<tr id="{{row['id']}}_row">
+    {% if not row['seperator'] %}
+    <td {% if row['subrow'] %} style="background-color: #dee2e6;" {% endif %}></td>
+    <td id="{{row['id']}}_name">{{row['name']}}</td>
+
+    {% if not (row['superrow'] or row['subrow']) %}
+    <td id="{{row['id']}}_date">
+        <button
+                class="btn btn-transparent btn-outline-secondary"
+                title="Ablaufdatum ändern"
+                style="width: 88px"
+                onclick="trigger_event({'action': 'fill_modal', 'id': '{{row['id']}}'});
+                         trigger_event({'action': 'show_modal'})">
+            {{row['exp']}}
+        </button>
+    </td>
+    {% endif %}
+
+    {% if row['subrow'] %}
+    <td id="{{row['id']}}_date" style="text-align: center">
+        {{row['exp']}}
+    </td>
+    {% endif %}
+
+    {% if not row['superrow'] %}
+    <td class="input-group" style="width: 200px">
+        <button
+                class="btn btn-transparent btn-outline-secondary input-group-prepend"
+                title="Menge verringern"
+                id="{{row['id']}}_dec"
+                onclick="trigger_event({'action': 'decrease', 'id': '{{row['id']}}'})"
+                {% if row[
+        'count'] <= 1 %} disabled {% endif %}>
+        <i class="fas fa-minus"></i>
+        </button>
+        <input
+                type="text"
+                maxlength="5"
+                class="input-group-text bg-transparent border-secondary mx-2"
+                style="width: 5em;"
+                value="{{row['count']}}"
+                id="{{row['id']}}_count"
+                title="Menge des Materials"
+                onchange="trigger_event({'action': 'set_count', 'id': '{{row['id']}}', 'value': value})"/>
+        <button class="btn btn-transparent btn-outline-secondary input-group-append"
+                id="{{row['id']}}_inc"
+                title="Menge erhöhen"
+                onclick="trigger_event({'action': 'increase', 'id': '{{row['id']}}'})"
+                {% if not row[
+        'increasable'] %} disabled {% endif %}>
+        <i class="fas fa-plus"></i>
+        </button>
+    </td>
+    <td>
+        <button
+                class="btn btn-transparent btn-outline-danger"
+                title="Eintrag löschen"
+                onclick="trigger_event({'action': 'delete', 'id': '{{row['id']}}'})">
+            <i class="fas fa-trash"></i>
+        </button>
+    </td>
+    {% endif %}
+
+    {% if row['superrow'] %}
+    <td id="{{row['id']}}_date">
+        <button
+                class="btn btn-transparent btn-outline-secondary"
+                title="Ablaufdaten auswählen"
+                style="width: 88px"
+                onclick="trigger_event({'action': 'fill_modal', 'id': '{{row['id']}}'});
+                         trigger_event({'action': 'show_modal'})">
+            Wählen
+        </button>
+    </td>
+    <td></td>
+    <td></td>
+    {% endif %}
+    <td
+            {% if row[
+    'subrow'] %} style="background-color: #dee2e6;" {% endif %}></td>
+    {% endif %}
+    {% if row['seperator'] %}
+    <td style="background-color: #dee2e6;"></td>
+    <td style="background-color: #dee2e6;"></td>
+    <td style="background-color: #dee2e6;"></td>
+    <td style="background-color: #dee2e6;"></td>
+    <td style="background-color: #dee2e6;"></td>
+    <td style="background-color: #dee2e6;"></td>
+
+    {% endif %}
+</tr>
+{% endfor %}

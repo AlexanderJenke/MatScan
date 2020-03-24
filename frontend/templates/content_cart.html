@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="/css/cart.css">
+<script src="/js/cart.js"></script>
+
+<div class="row" style="position: relative;">
+    <div class="col-3 text-center">
+        <strong>Von</strong>
+        <select class="custom-select my-1 mr-sm-2 shadow" id="inlineFormCustomSelectPref">
+            <option selected value="1">Apotheke</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <strong>&nbsp;</strong>
+    </div>
+    <div class="col text-center arrow"></div>
+    <div class="col-3 text-center">
+        <strong>Nach</strong>
+        <select class="custom-select my-1 mr-sm-2 shadow" id="inlineFormCustomSelectPref">
+            <option selected value="1">Umlauf</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <strong>&nbsp;</strong>
+    </div>
+</div>
+
+<div class="cart container-lg bg-light rounded-lg shadow align-strech border px-0 mx-0">
+    <div class="cart searchbar input-group p-2">
+        <input class="form-control" type="search" placeholder="Hinzufügen..." aria-label="search">
+        <div class="input-group-append">
+            <button class="cart searchbar btn btn-outline-success" type="button"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+
+    <div class="cart align-stretch table table-striped table-responsive overflow-auto mb-0">
+        <table class="table bg-light mb-0" id="cart_table">
+            <col width="10">
+            <col width="1000">
+            <col width="0">
+            <col width="0">
+            <col width="0">
+            <col width="10">
+            <thead class="">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" style="min-width: 288px; text-align: center;">Name</th>
+                <th scope="col" style="min-width: 112px; text-align: center;">Exp.</th>
+                <th scope="col" style="min-width: 200px; text-align: center;">Anzahl</th>
+                <th scope="col" style="min-width: 64px;"></th>
+                <th scope="col"></th>
+
+            </tr>
+            </thead>
+            <tbody id="cart_tbody">
+            </tbody>
+        </table>
+    </div>
+    <hr class="my-0 py-0"/>
+    <div class="cart buttons row mx-2 my-2" role="group">
+        <button type="button" class="cart btn btn-danger col-3"
+                title="Vorgang abbrechen
+Alles wird Rückgängig gemacht"
+                onclick="trigger_event({'action': 'clear_cart'})">
+            <i class="fas fa-times d-sm-none d-block"></i>
+            <b class="d-none d-sm-block">Abbrechen</b>
+        </button>
+        <div class="col"></div>
+        <button type="button" class="cart btn btn-success col-3" title="Vorgang abschließen
+Das aufgelistete Material wird umgelagert">
+            <i class="fas fa-check d-sm-none d-block"></i>
+            <b class="d-none d-sm-block">Fertig</b>
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content" id="dateModalContent">
+
+    </div>
+  </div>
+</div>
