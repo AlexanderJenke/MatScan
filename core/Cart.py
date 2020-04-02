@@ -81,8 +81,7 @@ class Cart:
     def get_rows(self):
         rows = []
         for pzn in self.items:
-            count_bigger_one = [self.items[pzn]['exps'][exp]['count'] >= 1 for exp in self.items[pzn]['exps']]
-            print(count_bigger_one)
+            count_bigger_one = [self.items[pzn]['exps'][exp]['count'] > 0 for exp in self.items[pzn]['exps']]
             if sum(count_bigger_one) > 1:
                 rows.append({'name': self.items[pzn]['name'],
                              'superrow': True,
