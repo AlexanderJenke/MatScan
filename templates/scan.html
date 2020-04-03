@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>MatScan</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="css/scan.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="js/capture.js"></script>
+</head>
+<body>
+
+
+<img id='tts' src="/img/tts.png"/>
+
+<div class="camera">
+    <video id="video" playsinline autoplay></video>
+    <div id="button" onclick="buttonpress();"></div>
+    <canvas id="canvas"></canvas>
+</div>
+<div class="container-lg bg-transparent mt-3" id="alert_box"></div>
+
+{% if auto %}
+<script>
+    autoscan = true;
+    document.getElementById('tts').src = "/img/autostart.png";
+</script>
+{% endif %}
+</body>
+</html>
