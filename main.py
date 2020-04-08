@@ -10,6 +10,8 @@ from flask import Flask, send_from_directory, render_template, request
 import decoder
 
 app = Flask("MatScan", static_url_path='')
+with open("PZN.csv", 'r') as PZNs:
+    PZN_LUT = {pzn.split(';')[1].zfill(8): pzn.split(';')[0] for pzn in PZNs}
 
 
 @app.route('/')
@@ -37,11 +39,11 @@ def scan():
     codes = decoder.decode(im)
     if len(codes):
         print(codes[0])
-        if codes[0]['type'] == 'unknown':
-            text = f"<b>Code ungültig!</b> {codes[0]['content']}"
+        if codes[0]['dfi'] == 'UNKONWN':
+            text = f"<b>Code ungültig!</b> {codes[0]['RAW']}"
             codes = []
         else:
-            text = f"<b>{codes[0]['PZN']}</b> Exp: 20{codes[0]['Exp'][:2]}-{codes[0]['Exp'][2:4]}"
+            text = f"<b>{PZN_LUT[codes[0]['PZN']]}</b> Exp: 20{codes[0]['EXP'][:2]}-{codes[0]['EXP'][2:4]}"
     else:
         text = "<b>Kein Code erkannt!</b>"
 
@@ -92,4 +94,7 @@ def javascript(path):
 
 
 if __name__ == '__main__':
-    app.run(host="10.0.0.20", port=8080, ssl_context=('cert.pem', 'key.pem'))
+    app.run(
+        host="10.0.0.20",
+        port=8080,
+        ssl_context=('cert.pem', 'key.pem'))
