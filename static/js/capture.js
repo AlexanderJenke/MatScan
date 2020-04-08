@@ -78,7 +78,7 @@ function takepicture() {
             if (autoscan) {
                 autoscan_running = true;
                 document.getElementById('tts').src = "/img/autostop.png";
-                setTimeout(takepicture, 2000);
+                setTimeout(takepicture, 1500);
             }
         },
         error: function (res) {
